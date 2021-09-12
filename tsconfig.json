@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+      "target": "es5",
+      "jsx": "react",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "allowSyntheticDefaultImports": true,
+      "noEmitOnError": false,
+      "noUnusedLocals": true,
+      "removeComments": true,
+      "noImplicitAny": true,
+      "esModuleInterop": true,
+      "baseUrl": "./src/",
+      "paths": {
+          "Components/*": ["ui/components/*"],
+      }
+  },
+  "exclude": [
+      "node_modules"
+  ],
+  "include": [
+    "src/*.d.ts",
+    "src/**/*"
+  ]
+}
