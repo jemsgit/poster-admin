@@ -8,15 +8,7 @@
     "start-server": "nodemon src/server/server.js",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "npm run lint"
-  },
-  "husky": {
-    "hooks": {
-      "applypatch-msg": "echo \"[Husky] applypatch-msg\"",
-      "pre-applypatch": "echo \"[Husky] pre-applypatch\"",
-      "post-applypatch": "echo \"[Husky] post-applypatch\"",
-      "pre-commit": "echo \"[Husky] pre-commit\""
-    }
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -62,7 +54,7 @@
     "eslint-plugin-react": "^7.26.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "html-webpack-plugin": "^5.3.2",
-    "husky": "^7.0.2",
+    "husky": "^6.0.0",
     "nodemon": "2.0.12",
     "postcss-loader": "^6.1.1",
     "postcss-nested": "^5.0.6",
