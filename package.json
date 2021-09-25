@@ -6,6 +6,7 @@
   "scripts": {
     "start-dev": "npm run start-server & cross-env UI_MOCK=1 webpack-dev-server --mode development --hot --config webpack.dev.js --progress",
     "start-server": "nodemon src/server/server.js",
+    "build": "cross-env NODE_ENV=production & webpack --config webpack.production.js",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
@@ -25,6 +26,7 @@
     "koa-bodyparser": "^4.3.0",
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
     "mobx": "^6.3.3",
     "mobx-react": "^7.2.0",
     "mobx-react-lite": "^3.2.1",

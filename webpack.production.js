@@ -6,7 +6,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: ['./src/index.tsx'],
-  devtool:'eval-cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js',
@@ -39,29 +38,8 @@ module.exports = {
         template: "./src/index.html"
     }),
     new webpack.DefinePlugin({
-      config: webpack.DefinePlugin.runtimeValue(
-        () => JSON.stringify(config.client),
-        // Passing the second argument as `true` reevaluates the defined expression.
-        // Beware that this disables module caching and must be used with caution.
-        true,
-      ),
+      config: JSON.stringify(config.client),
       useMocks: useMocks
     })
-  ],
-  devServer: {
-    static: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 8080,
-    liveReload: true,
-    historyApiFallback: true,
-    open: true,
-    headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    },
-    proxy: {
-      '/api': 'http://localhost:3000'
-    }
-}
+  ]
 }
