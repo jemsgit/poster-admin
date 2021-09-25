@@ -1,10 +1,9 @@
-let Router = require('koa-router');
+const Router = require('koa-router');
 const koaBody = require('koa-bodyparser');
-const config = require('../../../config');
 const authMiddleware = require('../middlewares/auth-middleware');
 
-let channelsRouter = new Router({
-  prefix: '/api/channels'
+const channelsRouter = new Router({
+  prefix: '/api/channels',
 });
 
 channelsRouter.get('/:channelId', koaBody(), authMiddleware, (ctx) => {

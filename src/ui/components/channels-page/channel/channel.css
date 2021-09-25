@@ -1,0 +1,22 @@
+.channel {
+  display: flex;
+  flex-direction: column;
+  border: 1px black solid;
+  border-radius: 3px;
+  padding: 1em;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+
+  &__params {
+    font-size: 1rem;
+  }
+}

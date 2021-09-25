@@ -1,8 +1,13 @@
-import { PostType, LoadImage, ScheduleTimeString, ChannelId } from '../@types/shared-kernel';
+export interface ChannelFile {
+  name: string;
+  content: string;
+}
 
 export type Channel = {
   id: ChannelId;
+  name: string;
   type: PostType;
   loadImage: LoadImage;
-  times: ScheduleTimeString[];
+  times: string[];
+  files: ChannelFile[];
 };

@@ -1,4 +1,4 @@
-export type ChannelId = string;
-export type PostType = 'links' | 'image' | 'video';
-export type LoadImage = true | false | 'random';
-export type ScheduleTimeString = string;
+type ChannelId = string;
+type PostType = 'links' | 'image' | 'video';
+type LoadImage = true | false | 'random';
+type ScheduleTimeString = string;

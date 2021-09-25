@@ -21,6 +21,6 @@
   ],
   "include": [
     "src/*.d.ts",
-    "src/**/*"
-  ]
+    "src/**/*",
+    "config.js"  ]
 }

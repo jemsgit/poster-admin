@@ -5,16 +5,21 @@ const config = {
   auth: {
     secret: 'secret',
     cookieOptions: {
-      ttl: '1 h'
-    }
+      ttl: '1 h',
+    },
   },
   client: {
     endpoints: {
       auth: {
-        post: '/api/login'
-      }
-    }
-  }
+        post: '/api/login',
+      },
+      channels: {
+        get: '/api/channels',
+        getDetails: '/api/channels/{channelId}',
+        saveContent: '/api/channels/saveFile'
+      },
+    },
+  },
 };
 
 module.exports = config;

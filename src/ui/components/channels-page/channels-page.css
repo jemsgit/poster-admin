@@ -1,0 +1,21 @@
+.channels-page {
+  height: 100vh;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__content {
+    li {
+      list-style-type: none;
+    }
+  
+    .channel {
+      margin: 1rem;
+    }
+  }
+
+  &__list {
+    padding-inline-start: 0;
+  }
+}

@@ -1,68 +1,80 @@
-import React, { useCallback, useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useCallback, useState, FC } from 'react';
+import { Redirect } from 'react-router-dom';
 import { createCn } from 'bem-react-classname';
 
-import LoginModel, { LoginInterface } from './LoginModel';
+import { isSubmitEnable } from './login-logic';
 
-import { authUser } from '../../../application/auth-user';
+import { useAuthenticate } from '../../../application/auth-user';
 import './login.css';
 
 const cn = createCn('login');
-let loginModel: LoginInterface = new LoginModel('', '');
 
-export default function Login() {
-  useEffect(() => {
-    loginModel = new LoginModel('', '');
+const Login: FC = () => {
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-    return () => {
-      loginModel = new LoginModel('', '');
+  const { isAuth, authenticate } = useAuthenticate();
+
+  const handleLoginChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setLogin(event.target.value);
+  }, [login]);
+
+  const handlePasswordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  }, [password]);
+
+  const submitLogin = useCallback(async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      await authenticate(login, password);
+    } catch (err) {
+      console.log(err);
     }
-  }, [])
-  const [login, setLogin] = useState(loginModel.login);
-  const [password, setPassword] = useState(loginModel.password);
-
-  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    if(event.target.name === 'login') {
-      loginModel.login = event.target.value;
-      setLogin(event.target.value);
-    } else {
-      loginModel.password = event.target.value;
-      setPassword(loginModel.password);
-    }
+    setIsLoading(false);
   }, [login, password]);
 
-  const submitLogin = useCallback((e) => {
-    e.preventDefault();
-    authUser(login, password)
-  }, [login, password])
+  if (isAuth) {
+    return <Redirect to="/channels" />;
+  }
 
   return (
     <div className={cn()}>
       <form>
-        <label htmlFor="login">
+        <label
+          htmlFor="login"
+        >
           Login:
         </label>
-          <input
-            type="text"
-            name="login"
-            value={login}
-            onChange={handleChange}
-          />
+        <input
+          type="text"
+          id="login"
+          value={login}
+          onChange={handleLoginChange}
+        />
         <label htmlFor="password">
           Password:
         </label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          value={password}
+          onChange={handlePasswordChange}
+        />
 
-          <button
-            type='submit'
-            disabled={ !loginModel.isSubmitEnable() }
-            onClick={submitLogin}
-          > Login </button>
+        <button
+          type="submit"
+          disabled={!isSubmitEnable(login, password, isLoading)}
+          onClick={submitLogin}
+        >
+          Login
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
+
+export default Login;

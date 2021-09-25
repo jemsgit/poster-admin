@@ -12,5 +12,5 @@ function checkJwtToken(token, authConfig) {
 
 module.exports = {
   getJwtToken,
-  checkJwtToken
-}
+  checkJwtToken,
+};

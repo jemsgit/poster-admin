@@ -1,8 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const config = require('./config');
-const useMocks = process.env.MOCK == 1;
+const useMocks = process.env.UI_MOCK == 1;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+console.log(process.env.UI_MOCK)
 
 console.log(useMocks)
 console.log(config.client)
@@ -17,7 +19,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Components: path.resolve(__dirname, 'src/ui/components')
+      Components: path.resolve(__dirname, 'src/ui/components'),
+      ui: path.resolve(__dirname, 'src/ui'),
     }
   },
   module: {
@@ -29,7 +32,12 @@ module.exports = {
     },
     {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"]
+        use: ["style-loader", {
+          loader: "css-loader",
+          options: {
+            sourceMap: true,
+          },
+        }, { loader: "postcss-loader", options: { sourceMap: true } }]
     }]
   },
   plugins: [
@@ -37,7 +45,12 @@ module.exports = {
         template: "./src/index.html"
     }),
     new webpack.DefinePlugin({
-      config: JSON.stringify(config.client),
+      config: webpack.DefinePlugin.runtimeValue(
+        () => JSON.stringify(config.client),
+        // Passing the second argument as `true` reevaluates the defined expression.
+        // Beware that this disables module caching and must be used with caution.
+        true,
+      ),
       useMocks: useMocks
     })
   ],
