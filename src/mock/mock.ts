@@ -76,7 +76,6 @@ function isUrlMocked(url: string, method: string) {
 
 function requestInterceptor(config: any) {
   if (isUrlMocked(config.url, config.method)) {
-    console.log(`axios mocking ${config.url}`);
     return getMockError(config);
   }
   return config;
