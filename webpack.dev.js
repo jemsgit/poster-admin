@@ -5,7 +5,7 @@ const useMocks = process.env.UI_MOCK == 1;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/index.tsx'],
+  entry: ['./src/ui/index.tsx'],
   devtool:'eval-cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -36,7 +36,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-        template: "./src/index.html"
+        template: "./src/ui/index.html"
     }),
     new webpack.DefinePlugin({
       config: webpack.DefinePlugin.runtimeValue(

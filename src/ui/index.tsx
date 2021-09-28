@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import "./index.css";
-import App from './ui/components/app/app';
-import { StoreProvider } from './ui/hooks/useStore';
+import App from './components/app/app';
+import { StoreProvider } from './hooks/useStore';
 
 ReactDOM.render(
   <StoreProvider>
