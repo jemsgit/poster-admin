@@ -59,7 +59,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.key }}
           script: |
-            cd ~/projects/admin-poster
+            cd /home/jem/projects/admin-poster
             docker-compose pull
             docker-compose stop
             docker-compose rm -f
