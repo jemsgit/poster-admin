@@ -4,11 +4,10 @@ on:
  push:
   tags:
     - "v*.*.*"
-  branches:
-    - master
 
 jobs:
   deploy:
+    if: github.event.base_ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -46,3 +45,19 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+      
+      - run: rsync -v docker-compose.yml -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --no-recursive . ${{ secrets.SERVER_USER }}@104.131.43.62:/home/jem/projects/admin-poster
+
+      - name: run app
+        uses: appleboy/ssh-action@master
+        with:
+          host: 104.131.43.62
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.key }}
+          script: |
+            cd ~/projects/admin-poster
+            docker-compose pull
+            docker-compose stop
+            docker-compose rm -f
+            docker-compose up -d
+

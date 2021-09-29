@@ -1,0 +1,8 @@
+version: "2"
+services:
+  app:
+    image: "jemjem7/poster:latest"
+    ports:
+      - "90:3000"
+    volumes:
+      - /home/jem/projects/poster/channels:/usr/src/app/channels
