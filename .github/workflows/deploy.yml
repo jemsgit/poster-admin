@@ -60,7 +60,7 @@ jobs:
           key: ${{ secrets.key }}
           script: |
             cd /home/jem/projects/admin-poster
-            docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_ACCESS_TOKEN 
+            echo $DOCKER_HUB_ACCESS_TOKEN | docker login --password-stdin -u $DOCKER_HUB_USERNAME
             docker-compose pull
             docker-compose stop
             docker-compose rm -f
