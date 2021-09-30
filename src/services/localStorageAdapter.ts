@@ -4,6 +4,6 @@ export function checkUserIsAuth(): boolean {
   return Boolean(localStorage.getItem(localStorageAuthParam));
 }
 
-export function setUserIsAuth(): void {
-  localStorage.setItem(localStorageAuthParam, '1');
+export function setUserIsAuth(flag = true): void {
+  localStorage.setItem(localStorageAuthParam, flag ? '1' : '0');
 }

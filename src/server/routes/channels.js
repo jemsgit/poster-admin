@@ -9,8 +9,45 @@ const channelsRouter = new Router({
   prefix: '/api/channels',
 });
 
+function getChannelInfo(channelInfo, channelFilesParams, id) {
+  if (!channelInfo && !channelFilesParams) {
+    return undefined;
+  }
+
+  let fileList = [];
+  let times;
+  if (channelFilesParams) {
+    const { pendingContent, contentResult } = channelFilesParams;
+    let { content } = channelFilesParams;
+
+    if (pendingContent) {
+      fileList.push(pendingContent);
+    }
+
+    if (content) {
+      if (!Array.isArray(content)) {
+        content = [content];
+      }
+      fileList = fileList.concat(content);
+    }
+
+    if (contentResult) {
+      fileList.push(contentResult);
+    }
+  }
+
+  if (channelInfo) {
+    ({ times } = channelInfo);
+  }
+
+  return {
+    files: fileList,
+    times,
+    id,
+  };
+}
+
 channelsRouter.get('/', koaBody(), authMiddleware, (ctx) => {
-  console.log(ctx.request);
   const modulePath = path.resolve(process.env.PWD, './poster/settings/telegramchannels.js');
   const channels = require(modulePath);
   const result = [];
@@ -28,32 +65,24 @@ channelsRouter.get('/', koaBody(), authMiddleware, (ctx) => {
 });
 
 channelsRouter.get('/:channelId', koaBody(), authMiddleware, (ctx) => {
-  const modulePath = path.resolve(process.env.PWD, './poster/settings/grabber.js');
+  let modulePath = path.resolve(process.env.PWD, './poster/settings/grabber.js');
   const channelSettings = require(modulePath);
-  const channelParams = channelSettings[ctx.params.channelId];
-  if (!channelParams) {
+  modulePath = path.resolve(process.env.PWD, './poster/settings/telegramchannels.js');
+  const channels = require(modulePath);
+  const { channelId } = ctx.params;
+  const channelInfo = channels[channelId];
+  const channelFilesParams = channelSettings[channelId];
+
+  const channelData = getChannelInfo(channelInfo, channelFilesParams, channelId);
+
+  if (!channelData) {
     ctx.status = 404;
     ctx.body = 'Not found';
     return;
   }
-  let fileList = [];
-  if (channelParams.pendingContent) {
-    fileList.push(channelParams.pendingContent);
-  }
-
-  if (channelParams.content) {
-    if (!Array.isArray(channelParams.content)) {
-      channelParams.content = [channelParams.content];
-    }
-    fileList = fileList.concat(channelParams.content);
-  }
-
-  if (channelParams.contentResult) {
-    fileList.push(channelParams.contentResult);
-  }
 
   ctx.status = 200;
-  ctx.body = fileList;
+  ctx.body = channelData;
 });
 
 module.exports = channelsRouter;

@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: ['./src/ui/index.tsx'],
-  devtool:'eval-cheap-module-source-map',
+  devtool:'eval-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js',

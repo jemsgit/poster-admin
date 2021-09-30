@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { ApiService, ApiMethod } from 'application/ports';
+import { setUserIsAuth } from './localStorageAdapter';
+import { setUserAuth } from './storeAdapter';
 
 if (useMocks) {
   // cant use sync import with conditions
@@ -16,8 +18,19 @@ async function callApi(
   headers: Record<string, string> = {},
 ): Promise<any> {
   console.log(headers);
-  const res = await axios[method](url, params);
-  return res.data;
+  let res;
+  try {
+    res = await axios[method](url, params);
+    res = res.data;
+  } catch (e: any) {
+    if (axios.isAxiosError(e) && e.response.status === 401) {
+      setUserIsAuth(false);
+      setUserAuth(false);
+    } else {
+      throw Error(e);
+    }
+  }
+  return res;
 }
 
 const apiService: ApiService = {
