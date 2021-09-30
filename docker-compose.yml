@@ -5,4 +5,4 @@ services:
     ports:
       - "90:3000"
     volumes:
-      - /home/jem/projects/poster/channels:/usr/src/app/channels
+      - /home/jem/projects/poster:/usr/src/app/poster
