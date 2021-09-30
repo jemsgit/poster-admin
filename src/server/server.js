@@ -8,6 +8,7 @@ const serve = require('koa-static');
 const app = new Koa();
 const staticRouter = new Router();
 staticRouter.get('(.*)', (ctx) => {
+  console.log('static html');
   ctx.type = 'html';
   ctx.body = fs.createReadStream(path.resolve(__dirname, '../../dist/index.html'));
 });
