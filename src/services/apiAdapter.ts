@@ -3,7 +3,7 @@ import { ApiService, ApiMethod } from 'application/ports';
 import { setUserIsAuth } from './localStorageAdapter';
 import { setUserAuth } from './storeAdapter';
 
-if (useMocks) {
+if (0) {
   // cant use sync import with conditions
   import('../mock/mock')
     .then((module) => {
@@ -46,7 +46,7 @@ const apiService: ApiService = {
     return result;
   },
   saveChannelFileData: async (id: ChannelId, name: string, content: string) => {
-    const result = await callApi('put', config.endpoints.channels.saveContent, { id, name, content });
+    const result = await callApi('patch', config.endpoints.channels.saveContent.replace('{channelId}', id), { name, content });
     console.log(result);
     return result;
   },
@@ -57,7 +57,7 @@ const apiService: ApiService = {
       password,
     });
     console.log(result);
-    return true;
+    return result;
   },
 };
 

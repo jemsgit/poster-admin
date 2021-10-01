@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package.json ./
 COPY config.js ./
+COPY admin-db.sqlite ./
 
 RUN npm install
 

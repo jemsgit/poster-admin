@@ -19,7 +19,7 @@ const mocks: Record<string, any> = {
     },
   },
   '/api/channels/saveFile': {
-    put: {
+    patch: {
       data: true,
     },
   },

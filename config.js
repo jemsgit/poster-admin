@@ -16,7 +16,7 @@ const config = {
       channels: {
         get: '/api/channels',
         getDetails: '/api/channels/{channelId}',
-        saveContent: '/api/channels/saveFile'
+        saveContent: '/api/channels/saveFile/{channelId}'
       },
     },
   },

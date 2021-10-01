@@ -3,6 +3,7 @@ var grabberConfig = {
         modulePath: "customModules/test/test.js",
         content: ["channels/test/test_public.txt", "channels/test/test__channel.txt"],
         contentResult: "channels/test/test__listResult.txt",
+        pending: "channels/test/test__channel.txt",
         times: "0 45 01 * * 2",
         sourceId: "@test"
     },

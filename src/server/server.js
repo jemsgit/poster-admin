@@ -4,11 +4,11 @@ const fs = require('fs');
 const Router = require('koa-router');
 const logger = require('koa-logger');
 const serve = require('koa-static');
+require('./db/models/index');
 
 const app = new Koa();
 const staticRouter = new Router();
 staticRouter.get('(.*)', (ctx) => {
-  console.log('static html');
   ctx.type = 'html';
   ctx.body = fs.createReadStream(path.resolve(__dirname, '../../dist/index.html'));
 });

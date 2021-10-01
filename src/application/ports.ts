@@ -12,4 +12,4 @@ export interface StateService {
   saveChannels(channels: Channel[]): boolean;
 }
 
-export type ApiMethod = 'get' | 'post' | 'put' | 'delete';
+export type ApiMethod = 'get' | 'post' | 'put' | 'delete' | 'patch';
