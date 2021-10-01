@@ -6,3 +6,7 @@ services:
       - "90:3000"
     volumes:
       - /home/jem/projects/poster:/usr/src/app/poster
+      - ${PWD}/admin-db.sqlite:/usr/src/app/
+    environment:
+      DB_LOGIN: ${DB_LOGIN}
+      DB_PASS: ${DB_PASS}

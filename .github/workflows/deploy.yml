@@ -51,17 +51,20 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
   
       - run: rsync -v docker-compose.yml -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --no-recursive . ${{ secrets.SERVER_USER }}@104.131.43.62:/home/jem/projects/admin-poster
+      - run: rsync -v admin-db.sqlite -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --no-recursive . ${{ secrets.SERVER_USER }}@104.131.43.62:/home/jem/projects/admin-poster
 
       - name: run app
         uses: appleboy/ssh-action@master
         env:
           DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DB_LOGIN: ${{ secrets.DB_LOGIN }}
+          DB_PASS: ${{ secrets.DB_PASS }}
         with:
           host: 104.131.43.62
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.key }}
-          envs: DOCKER_HUB_ACCESS_TOKEN,DOCKER_HUB_USERNAME
+          envs: DOCKER_HUB_ACCESS_TOKEN,DOCKER_HUB_USERNAME,DB_LOGIN,DB_PASS
           script: |
             cd /home/jem/projects/admin-poster
             echo $DOCKER_HUB_ACCESS_TOKEN | docker login --password-stdin -u $DOCKER_HUB_USERNAME
