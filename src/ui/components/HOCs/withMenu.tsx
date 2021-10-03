@@ -11,7 +11,8 @@ const Menu: FC = observer(() => {
     return (
       <div>
         <nav>
-          <Link to="/channels">Каналы</Link>
+          <Link to="/channels">Channels</Link>
+          <Link to="/logout">Logout</Link>
         </nav>
         <UserInfo user={user} />
       </div>
