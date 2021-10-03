@@ -67,7 +67,8 @@ jobs:
           envs: DOCKER_HUB_ACCESS_TOKEN,DOCKER_HUB_USERNAME,DB_LOGIN,DB_PASS
           script: |
             cd /home/jem/projects/admin-poster
-            echo $DB_PASS
+            export DB_LOGIN=$DB_LOGIN
+            export DB_PASS=$DB_PASS
             echo $DOCKER_HUB_ACCESS_TOKEN | docker login --password-stdin -u $DOCKER_HUB_USERNAME
             docker-compose pull
             docker-compose stop
