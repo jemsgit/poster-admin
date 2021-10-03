@@ -51,7 +51,7 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
   
       - run: rsync -v docker-compose.yml -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --no-recursive . ${{ secrets.SERVER_USER }}@104.131.43.62:/home/jem/projects/admin-poster
-      - run: rsync -v admin-db.sqlite -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --no-recursive . ${{ secrets.SERVER_USER }}@104.131.43.62:/home/jem/projects/admin-poster
+      #- run: rsync -v admin-db.sqlite -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --no-recursive . ${{ secrets.SERVER_USER }}@104.131.43.62:/home/jem/projects/admin-poster
 
       - name: run app
         uses: appleboy/ssh-action@master
