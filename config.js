@@ -12,6 +12,7 @@ const config = {
     endpoints: {
       auth: {
         post: '/api/login',
+        logout: '/api/login/logout',
       },
       channels: {
         get: '/api/channels',

@@ -1,0 +1,9 @@
+.user-info {
+  &__userpic {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: red;
+    margin: 10px;
+  }
+}

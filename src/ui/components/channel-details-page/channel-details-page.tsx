@@ -11,6 +11,8 @@ import { getChannelDetails } from '../../../application/get-channels';
 import { saveChannelFileContent } from '../../../application/save-channel-data';
 import { ChannelFile } from '../../../domain/channel-details';
 
+import './channel-details-page.css';
+
 interface IProps<P> extends RouteComponentProps {
   match: Match<P>
 }

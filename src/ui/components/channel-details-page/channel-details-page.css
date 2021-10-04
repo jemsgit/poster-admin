@@ -1,0 +1,54 @@
+.channel-details-page {
+  height: 100vh;
+  padding: 20px;
+
+  &__title {
+    margin: 10px 0;
+  }
+
+  &__list {
+    padding-inline-start: 0;
+
+    li {
+      height: 1.8em;
+      line-height: 1.8em;
+      margin-top: 5px;
+      border: 1px black solid;
+      padding: 5px;
+      border-radius: 5px;
+      list-style: none;
+      max-width: 600px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+      }
+
+      a {
+        font-size: 1.1em;
+        color: black;
+      }
+    }
+  }
+
+  &__editor {
+    textarea {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__save-button {
+    width: 200px;
+    padding: 10px;
+    cursor: pointer;
+    background: black;
+    border-radius: 5px;
+    color: #00ff50;
+    font-size: 1.3em;
+    font-family: monospace;
+  }
+}

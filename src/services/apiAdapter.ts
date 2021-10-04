@@ -3,7 +3,7 @@ import { ApiService, ApiMethod } from 'application/ports';
 import { setUserIsAuth } from './localStorageAdapter';
 import { setUserAuth } from './storeAdapter';
 
-if (0) {
+if (useMocks) {
   // cant use sync import with conditions
   import('../mock/mock')
     .then((module) => {
@@ -14,7 +14,7 @@ if (0) {
 async function callApi(
   method: ApiMethod,
   url: string,
-  params: Record<string, string>,
+  params?: Record<string, string>,
   headers: Record<string, string> = {},
 ): Promise<any> {
   console.log(headers);
@@ -56,6 +56,11 @@ const apiService: ApiService = {
       login,
       password,
     });
+    console.log(result);
+    return result;
+  },
+  logoutUser: async () => {
+    const result = await callApi('get', config.endpoints.auth.logout);
     console.log(result);
     return result;
   },

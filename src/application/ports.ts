@@ -6,6 +6,7 @@ export interface ApiService {
   getChannelDetails(id: ChannelId): Promise<ChannelDetails>;
   saveChannelFileData(id: ChannelId, name: string, content: string): Promise<boolean>;
   authUser(login: string, password: string): Promise<boolean>;
+  logoutUser(): Promise<boolean>;
 }
 
 export interface StateService {

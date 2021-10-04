@@ -19,6 +19,10 @@ export function setUserAuth(isAuth:boolean) {
   store.user.setUserAuth(isAuth);
 }
 
+export function setUserInfo(name: string) {
+  store.user.setUserInfo(name);
+}
+
 export function setChannels(channels: Channel[]) {
   const newChannels: IChannel[] = channels.map(
     (channel: Channel) => ChannelStoreModel.create(channel),

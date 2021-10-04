@@ -10,6 +10,9 @@ export const UserStore = types
     setUserAuth(isAuth: boolean) {
       self.isAuth = isAuth;
     },
+    setUserInfo(name: string) {
+      self.name = name;
+    },
   }));
 
 export interface IUserStore extends Instance<typeof UserStore> {}

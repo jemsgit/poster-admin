@@ -1,5 +1,5 @@
 .login {
-  background-color: red;
+  background-color: black;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -14,7 +14,7 @@
 
     label {
       font-size: 18px;
-      color: white;
+      color: #56ff56;
       margin-top: 20px;
     }
 
@@ -25,8 +25,9 @@
 
     button {
       margin-top: 20px;
-      border-raduis: 3px;
-      background: white;
+      border-radius: 3px;
+      background: #56ff56;
+      color: black;
       padding: 10px;
       outline: none;
       border: 1px blue solid;
