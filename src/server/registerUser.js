@@ -12,8 +12,7 @@ async function register() {
 }
 
 async function checkUserRegistered() {
-  const hashed = await hashPassword(password);
-  const user = await findUserWithPassword(login, hashed);
+  const user = await findUserWithPassword(login, password);
   console.log(Boolean(user));
 }
 

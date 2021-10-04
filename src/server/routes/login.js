@@ -2,7 +2,6 @@ const Router = require('koa-router');
 const koaBody = require('koa-bodyparser');
 const config = require('../../../config');
 const { getJwtToken } = require('../auth');
-const { hashPassword } = require('../services/password');
 const { findUserWithPassword } = require('../services/users');
 
 const JWT_COOKIE_NAME = 'jwt';
@@ -13,8 +12,7 @@ const loginRouter = new Router({
 
 loginRouter.post('/', koaBody(), async (ctx) => {
   const { login, password } = ctx.request.body;
-  const hashedPassword = await hashPassword(password);
-  const user = await findUserWithPassword(login, hashedPassword);
+  const user = await findUserWithPassword(login, password);
   if (user) {
     const token = getJwtToken({ username: 'admin' }, config.auth);
     ctx.cookies.set(JWT_COOKIE_NAME, token, { httpOnly: true, secure: false, sameSite: true });

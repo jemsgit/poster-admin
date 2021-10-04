@@ -8,9 +8,11 @@ async function findUserWithPassword(username, password) {
     },
   });
   console.log(user);
-  if (user && comparePasswords(user.password, password)) {
-    return user;
-  } return undefined;
+  if (!user) {
+    return undefined;
+  }
+  const passIsCorrect = await comparePasswords(user.password, password);
+  return passIsCorrect ? user : undefined;
 }
 
 async function addUser(username, password) {
