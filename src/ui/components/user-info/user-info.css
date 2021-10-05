@@ -1,9 +1,21 @@
+@import '../../styles/vars.css';
+
 .user-info {
+  display: flex;
+  flex-direction: column;
+  margin-right: var(--gap-m);
+  text-align: center;
+
   &__userpic {
     height: 30px;
     width: 30px;
     border-radius: 50%;
     background: red;
-    margin: 10px;
+    margin: var(--gap-s) auto 0;
+  }
+
+  &__name {
+    font-size: var(--font-size-s);
+    color: var(--white-color-100);
   }
 }

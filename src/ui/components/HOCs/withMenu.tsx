@@ -33,7 +33,9 @@ function withMenu(WrapedComponent: FC, props: any) {
   return (
     <>
       <Menu />
-      <WrapedComponent {...props} />
+      <div className="page">
+        <WrapedComponent {...props} />
+      </div>
     </>
   );
 }

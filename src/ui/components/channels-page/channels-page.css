@@ -1,8 +1,13 @@
+@import '../../styles/vars.css';
+
 .channels-page {
-  height: 100vh;
+  min-height: 100%;
+  padding-top: var(--gap-xl);
+  box-sizing: border-box;
 
   &__title {
     text-align: center;
+    margin-top: 0;
   }
 
   &__content {

@@ -1,3 +1,5 @@
+@import '../../styles/vars.css';
+
 .login {
   background-color: black;
   height: 100vh;
@@ -10,25 +12,25 @@
     flex-direction: column;
     min-width: 300px;
     height: 300px;
-    padding: 20px;
+    padding: var(--gap-xl);
 
     label {
-      font-size: 18px;
-      color: #56ff56;
-      margin-top: 20px;
+      font-size: var(--font-size-m);
+      color: var(--color-main-dark-theme-font);
+      margin-top: var(--gap-xl);
     }
 
     input {
       height: 24px;
-      margin-top: 10px;
+      margin-top: var(--gap-m);
     }
 
     button {
-      margin-top: 20px;
+      margin-top: var(--gap-xl);
       border-radius: 3px;
       background: #56ff56;
       color: black;
-      padding: 10px;
+      padding: var(--gap-m);
       outline: none;
       border: 1px blue solid;
       cursor: pointer;

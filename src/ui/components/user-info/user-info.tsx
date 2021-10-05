@@ -12,7 +12,7 @@ export default function UserInfo(props: IProps) {
   return (
     <div className="user-info">
       <div className="user-info__userpic"> </div>
-      <span>{ name }</span>
+      <span className="user-info__name">{ name }</span>
     </div>
   );
 }
