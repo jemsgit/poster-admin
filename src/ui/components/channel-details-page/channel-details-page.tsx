@@ -1,5 +1,5 @@
 import React, {
-  FC, useCallback, useEffect, useState,
+  FC, useCallback, useEffect, useState, useRef,
 } from 'react';
 // import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
@@ -11,6 +11,7 @@ import { getChannelDetails } from '../../../application/get-channels';
 import { saveChannelFileContent } from '../../../application/save-channel-data';
 import { ChannelFile } from '../../../domain/channel-details';
 
+import { renderText } from '../../helpers/text-helper';
 import './channel-details-page.css';
 
 interface IProps<P> extends RouteComponentProps {
@@ -37,13 +38,19 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
   } = channelDetailsStore;
   const [editFile, setEditFile] = useState(undefined);
   const [content, setContent] = useState('');
+  const inputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     getChannelDetails(match.params.id);
   }, []);
 
-  const onFileEdit = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value);
+  useEffect(() => {
+    if (!inputRef.current) {
+      return;
+    }
+    if (content !== inputRef.current!.innerHTML) {
+      inputRef.current!.innerHTML = renderText(content);
+    }
   }, [content]);
 
   const handleFileSelect = useCallback((
@@ -56,8 +63,8 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
   }, [content]);
 
   const handleSaveContent = useCallback(() => {
-    saveChannelFileContent(channelId, editFile, content);
-  }, [channelId, editFile, content]);
+    saveChannelFileContent(channelId, editFile, inputRef.current!.innerText);
+  }, [channelId, editFile]);
 
   const renderFileList = () => (
     <section>
@@ -84,11 +91,10 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
 
   const renderEditor = () => (
     <section className={cn('editor')}>
-      <textarea
-        rows={20}
-        value={content}
-        onChange={onFileEdit}
-        disabled={isSaving}
+      <div
+        ref={inputRef}
+        contentEditable="true"
+        className={cn('editor-content')}
       />
       <button
         type="button"

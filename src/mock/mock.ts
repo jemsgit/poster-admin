@@ -30,7 +30,7 @@ const mocks: Record<string, any> = {
         times: ['16:30[4]'],
         files: [{
           name: 'test_channel.txt',
-          content: 'This is file content 123',
+          content: 'This is file content 123 c <div>\r\nThis is file content 123\r\nThis is file content 123\r\nThis is file content 123',
         }, {
           name: 'test_listResult.txt',
           content: 'This is file with results',

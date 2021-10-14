@@ -41,6 +41,18 @@
     }
   }
 
+  &__editor-content {
+    div {
+      background: #8fff7c38;
+      padding: 4px;
+      font-size: 1.05em;
+    }
+
+    div:nth-child(even) {
+      background: #3fa52e38;
+    }
+  }
+
   &__save-button {
     width: 200px;
     padding: 10px;
