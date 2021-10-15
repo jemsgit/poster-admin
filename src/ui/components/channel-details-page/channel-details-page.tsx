@@ -47,11 +47,16 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
   }, []);
 
   const handleOpenLink = useCallback((e: MouseEvent) => {
-    if (!e.altKey || e.target === e.currentTarget) {
+    if (!(e.ctrlKey || e.metaKey) || e.target === e.currentTarget || e.button !== 0) {
       return;
     }
-
     processItemClick(e);
+  }, []);
+
+  const handleContextClick = useCallback((e: MouseEvent) => {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
   }, []);
 
   useEffect(() => {
@@ -61,12 +66,14 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
     const currentRef = inputRef.current;
     if (content !== currentRef.innerHTML) {
       currentRef!.innerHTML = renderText(content);
-      inputRef.current.addEventListener('click', handleOpenLink);
+      currentRef.addEventListener('mousedown', handleOpenLink);
+      currentRef.addEventListener('contextmenu', handleContextClick);
     }
 
     // eslint-disable-next-line consistent-return
     return () => {
-      currentRef.removeEventListener('click', handleOpenLink);
+      currentRef.removeEventListener('mousedown', handleOpenLink);
+      currentRef.removeEventListener('contextmenu', handleContextClick);
     };
   }, [content, handleOpenLink]);
 

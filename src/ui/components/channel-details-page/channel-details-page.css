@@ -46,6 +46,8 @@
     overflow: auto;
     counter-reset: line-number;
     margin-bottom: 1em;
+    border: 1px #006500 solid;
+    border-radius: 3px;
 
     div {
       background: #8fff7c38;
