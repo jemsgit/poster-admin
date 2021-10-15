@@ -18,7 +18,7 @@ const mocks: Record<string, any> = {
       }],
     },
   },
-  '/api/channels/saveFile': {
+  '/api/channels/saveFile/@test': {
     patch: {
       data: true,
     },
@@ -29,7 +29,7 @@ const mocks: Record<string, any> = {
         id: '@test',
         times: ['16:30[4]'],
         files: [{
-          name: 'test_channel.txt',
+          name: 'channels/test/test__channel.txt',
           content: 'This is http://fsdfs.fs file content 123 c <div>\r\nThis is file content 123\r\nThis is file content 123\r\nThis is file content 123',
         }, {
           name: 'test_listResult.txt',

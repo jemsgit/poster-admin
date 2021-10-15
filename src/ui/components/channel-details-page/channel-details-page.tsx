@@ -58,14 +58,15 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
     if (!inputRef.current) {
       return;
     }
-    if (content !== inputRef.current!.innerHTML) {
-      inputRef.current!.innerHTML = renderText(content);
+    const currentRef = inputRef.current;
+    if (content !== currentRef.innerHTML) {
+      currentRef!.innerHTML = renderText(content);
       inputRef.current.addEventListener('click', handleOpenLink);
     }
 
     // eslint-disable-next-line consistent-return
     return () => {
-      inputRef.current.removeEventListener('click', handleOpenLink);
+      currentRef.removeEventListener('click', handleOpenLink);
     };
   }, [content, handleOpenLink]);
 
