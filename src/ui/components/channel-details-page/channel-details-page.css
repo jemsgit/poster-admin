@@ -42,14 +42,24 @@
   }
 
   &__editor-content {
+    height: 300px;
+    overflow: auto;
+    counter-reset: line-number;
+    margin-bottom: 1em;
+
     div {
       background: #8fff7c38;
       padding: 4px;
       font-size: 1.05em;
-    }
+      counter-increment: line-number;
 
-    div:nth-child(even) {
-      background: #3fa52e38;
+      &:before {
+        content: counter(line-number)" ";
+      }
+
+      &:nth-child(even) {
+        background: #3fa52e38;
+      }
     }
   }
 

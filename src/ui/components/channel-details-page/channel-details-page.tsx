@@ -12,6 +12,8 @@ import { saveChannelFileContent } from '../../../application/save-channel-data';
 import { ChannelFile } from '../../../domain/channel-details';
 
 import { renderText } from '../../helpers/text-helper';
+
+import { processItemClick } from './editor';
 import './channel-details-page.css';
 
 interface IProps<P> extends RouteComponentProps {
@@ -44,14 +46,28 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
     getChannelDetails(match.params.id);
   }, []);
 
+  const handleOpenLink = useCallback((e: MouseEvent) => {
+    if (!e.altKey || e.target === e.currentTarget) {
+      return;
+    }
+
+    processItemClick(e);
+  }, []);
+
   useEffect(() => {
     if (!inputRef.current) {
       return;
     }
     if (content !== inputRef.current!.innerHTML) {
       inputRef.current!.innerHTML = renderText(content);
+      inputRef.current.addEventListener('click', handleOpenLink);
     }
-  }, [content]);
+
+    // eslint-disable-next-line consistent-return
+    return () => {
+      inputRef.current.removeEventListener('click', handleOpenLink);
+    };
+  }, [content, handleOpenLink]);
 
   const handleFileSelect = useCallback((
     e: React.MouseEvent<HTMLAnchorElement>,
