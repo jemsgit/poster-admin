@@ -49,3 +49,7 @@ export function setChannelFileSavingState(state: boolean) {
 export function setChannelFileData(fileName: string, data: string) {
   store.channelDetailsStore.setFileData(fileName, data);
 }
+
+export function setAppTheme(theme: 'dark' | 'white') {
+  store.app.setTheme(theme);
+}

@@ -1,9 +1,12 @@
+@import '../../styles/vars.css';
+
 .channel-details-page {
-  height: 100vh;
   padding: 20px;
 
   &__title {
     margin: 10px 0;
+    color: var(--color-main-on-white-font);
+    text-align: center;
   }
 
   &__list {
@@ -13,7 +16,7 @@
       height: 1.8em;
       line-height: 1.8em;
       margin-top: 5px;
-      border: 1px black solid;
+      border: 1px var(--color-main-on-white-font) solid;
       padding: 5px;
       border-radius: 5px;
       list-style: none;
@@ -23,12 +26,12 @@
       cursor: pointer;
 
       &:hover {
-        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+        box-shadow: 4px 4px 8px 0px var(--color-main-on-white-hover);
       }
 
       a {
         font-size: 1.1em;
-        color: black;
+        color: var(--color-main-on-white-font);
       }
     }
   }
@@ -54,7 +57,8 @@
       padding: 4px;
       font-size: 1.05em;
       counter-increment: line-number;
-
+      color: var(--color-main-on-white-font);
+      
       &:before {
         content: counter(line-number)" ";
       }

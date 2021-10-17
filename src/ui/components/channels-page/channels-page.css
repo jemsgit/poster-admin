@@ -8,6 +8,7 @@
   &__title {
     text-align: center;
     margin-top: 0;
+    color: var(--color-main-on-white-font);
   }
 
   &__content {

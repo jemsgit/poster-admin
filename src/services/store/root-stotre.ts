@@ -2,6 +2,7 @@ import { types, Instance } from 'mobx-state-tree';
 import { ChannelStore } from './channel-store';
 import { ChannelDetailsStore } from './channel-files-store';
 import { UserStore } from './user-store';
+import { AppStore } from './app-store';
 
 export const RootStore = types
   .model('RootStore', {
@@ -19,6 +20,9 @@ export const RootStore = types
     user: types.optional(UserStore, {
       isAuth: false,
       name: '',
+    }),
+    app: types.optional(AppStore, {
+      theme: 'white',
     }),
   });
 

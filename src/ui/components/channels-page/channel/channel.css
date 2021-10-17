@@ -1,13 +1,16 @@
+@import '../../../styles/vars.css';
+
 .channel {
   display: flex;
   flex-direction: column;
-  border: 1px black solid;
+  border: 1px var(--color-main-on-white-font) solid;
   border-radius: 3px;
   padding: 1em;
   cursor: pointer;
+  color: var(--color-main-on-white-font);
 
   &:hover {
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px var(--color-main-on-white-hover);
   }
 
   &__name {

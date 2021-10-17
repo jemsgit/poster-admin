@@ -16,7 +16,7 @@
 
     label {
       font-size: var(--font-size-m);
-      color: var(--color-main-dark-theme-font);
+      color: var(--color-main-on-dark-font);
       margin-top: var(--gap-xl);
     }
 

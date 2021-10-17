@@ -14,7 +14,7 @@ html {
   justify-content: space-between;
 
   a {
-    color: var(--color-main-dark-theme-font);
+    color: var(--color-main-on-dark-font);
     line-height: 20px;
     padding: var(--gap-xl);
   }
@@ -28,4 +28,5 @@ html {
 
 .page {
   height: calc(100vh - var(--menu-height));
+  background: var(--color-background);
 }

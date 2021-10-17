@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 
 import PrivateRoute from 'Components/private-route/private-route';
 import Login from 'Components/login/login';
@@ -7,12 +8,14 @@ import ChannelsPage from 'Components/channels-page/channels-page';
 import ChannelDetailsPage from 'Components/channel-details-page/channel-details-page';
 import Root from 'Components/root/root';
 import withMenu from 'Components/HOCs/withMenu';
+import useTheme from '../../hooks/useTheme';
 import './app.css';
 
 function App() {
+  const { theme } = useTheme();
   return (
     <Router>
-      <div className="app">
+      <div className="app" data-theme={theme}>
         <Switch>
           <Route path="/" component={Root} exact />
           <Route path="/login" component={Login} />
@@ -40,4 +43,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
