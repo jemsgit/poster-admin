@@ -11,7 +11,7 @@ import { getChannelDetails } from '../../../application/get-channels';
 import { saveChannelFileContent } from '../../../application/save-channel-data';
 import { ChannelFile } from '../../../domain/channel-details';
 
-import { renderText } from '../../helpers/text-helper';
+import { renderText, escapeHtml } from '../../helpers/text-helper';
 
 import { processItemClick } from './editor';
 import './channel-details-page.css';
@@ -59,6 +59,12 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
     }
   }, []);
 
+  const handlePaste = (e: any) => {
+    e.preventDefault();
+    const text = (e.originalEvent || e).clipboardData.getData('text/plain');
+    document.execCommand('insertHTML', false, escapeHtml(text));
+  };
+
   useEffect(() => {
     if (!inputRef.current) {
       return;
@@ -68,12 +74,14 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
       currentRef!.innerHTML = renderText(content);
       currentRef.addEventListener('mousedown', handleOpenLink);
       currentRef.addEventListener('contextmenu', handleContextClick);
+      currentRef.addEventListener('paste', handlePaste);
     }
 
     // eslint-disable-next-line consistent-return
     return () => {
       currentRef.removeEventListener('mousedown', handleOpenLink);
       currentRef.removeEventListener('contextmenu', handleContextClick);
+      currentRef.removeEventListener('paste', handlePaste);
     };
   }, [content, handleOpenLink]);
 

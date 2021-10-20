@@ -16,6 +16,13 @@ function renderText(text: string) {
   return result;
 }
 
+function escapeHtml(text: string) {
+  const divEl = document.createElement('div');
+  divEl.innerText = text;
+  return divEl.innerHTML;
+}
+
 export {
   renderText,
+  escapeHtml,
 };
