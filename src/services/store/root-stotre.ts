@@ -3,6 +3,7 @@ import { ChannelStore } from './channel-store';
 import { ChannelDetailsStore } from './channel-files-store';
 import { UserStore } from './user-store';
 import { AppStore } from './app-store';
+import { getAppTheme } from '../localStorageAdapter';
 
 export const RootStore = types
   .model('RootStore', {
@@ -22,7 +23,7 @@ export const RootStore = types
       name: '',
     }),
     app: types.optional(AppStore, {
-      theme: 'white',
+      theme: getAppTheme() || 'light',
     }),
   });
 

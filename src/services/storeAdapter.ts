@@ -50,6 +50,6 @@ export function setChannelFileData(fileName: string, data: string) {
   store.channelDetailsStore.setFileData(fileName, data);
 }
 
-export function setAppTheme(theme: 'dark' | 'white') {
+export function setAppTheme(theme: Theme) {
   store.app.setTheme(theme);
 }

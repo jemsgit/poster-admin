@@ -20,10 +20,10 @@ const Menu: FC = observer(() => {
   }, [logout]);
 
   const handleThemeChange = useCallback((e: any) => {
-    setAppTheme(e.target.checked ? 'dark' : 'white');
+    setAppTheme(e.target.checked ? 'dark' : 'light');
   }, [setAppTheme]);
 
-  const isWhiteTheme = theme !== 'white';
+  const isLightTheme = theme !== 'light';
 
   if (user.isAuth) {
     return (
@@ -33,7 +33,7 @@ const Menu: FC = observer(() => {
           <Link to="/logout" onClick={handleLogout}>Logout</Link>
         </nav>
         <Toggle
-          isChecked={isWhiteTheme}
+          isChecked={isLightTheme}
           onChange={handleThemeChange}
         />
         <UserInfo user={user} />

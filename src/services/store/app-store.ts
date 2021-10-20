@@ -10,10 +10,10 @@ export const App = types.model('App', {
 
 export const AppStore = types
   .model('AppStore', {
-    theme: 'white',
+    theme: 'light',
   })
   .actions((self) => ({
-    setTheme(theme: 'white' | 'dark') {
+    setTheme(theme: Theme) {
       self.theme = theme;
     },
   }));

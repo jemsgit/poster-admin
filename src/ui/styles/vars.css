@@ -6,7 +6,8 @@ html {
   --black-color-60: #615f5f;
   --white-color-100: #ffffff;
   --white-color-70: #fdfcff33;
-  --green-color-dark: #4c6549; 
+  --green-color-dark: #4c6549;
+  --blue-color-dark: #363363;
   
 
   --color-main-on-dark-font: var(--green-color);
@@ -30,7 +31,7 @@ html {
 }
 
 html .app[data-theme='dark'] {
-  --color-background: var(--green-color-dark);
+  --color-background: var(--blue-color-dark);
   --color-main-on-white-font: var(--white-color-100);
   --color-main-on-white-hover: var(--white-color-70);
 }

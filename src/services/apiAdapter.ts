@@ -36,18 +36,14 @@ async function callApi(
 const apiService: ApiService = {
   getChanngels: async () => {
     const result = await callApi('get', config.endpoints.channels.get, {});
-    console.log(result);
     return result;
   },
   getChannelDetails: async (id: ChannelId) => {
-    console.log(config);
     const result = await callApi('get', config.endpoints.channels.getDetails.replace('{channelId}', id), {});
-    console.log(result);
     return result;
   },
   saveChannelFileData: async (id: ChannelId, name: string, content: string) => {
     const result = await callApi('patch', config.endpoints.channels.saveContent.replace('{channelId}', id), { name, content });
-    console.log(result);
     return result;
   },
   authUser: async (login: string, password: string) => {
@@ -56,12 +52,10 @@ const apiService: ApiService = {
       login,
       password,
     });
-    console.log(result);
     return result;
   },
   logoutUser: async () => {
     const result = await callApi('get', config.endpoints.auth.logout);
-    console.log(result);
     return result;
   },
 };
