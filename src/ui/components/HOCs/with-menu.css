@@ -27,6 +27,6 @@ html {
 }
 
 .page {
-  height: calc(100vh - var(--menu-height));
+  min-height: calc(100vh - var(--menu-height));
   background: var(--color-background);
 }
