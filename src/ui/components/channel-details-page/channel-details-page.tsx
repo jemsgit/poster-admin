@@ -95,7 +95,9 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
   }, [content]);
 
   const handleSaveContent = useCallback(() => {
-    const text = inputRef.current!.innerText.replace(/\n\n/g, '\n');
+    const text = inputRef.current!.innerText
+      .replace(/\n\n/g, '\n')
+      .replace(new RegExp(String.fromCharCode(160), 'g'), ' ');
     saveChannelFileContent(channelId, editFile, text);
   }, [channelId, editFile]);
 
