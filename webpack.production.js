@@ -44,7 +44,8 @@ module.exports = {
       config: JSON.stringify(config.client),
       useMocks: useMocks,
       version: JSON.stringify(VERSION),
-      tag: VERSION
+      tag: VERSION,
+      //123
     })
   ]
 }
