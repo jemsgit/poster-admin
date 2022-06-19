@@ -2,6 +2,7 @@
 
 html {
   --menu-height: 50px;
+  --menu-height-with-tag: 70px;
 }
 
 .menu {
@@ -27,6 +28,6 @@ html {
 }
 
 .page {
-  min-height: calc(100vh - var(--menu-height));
+  min-height: calc(100vh - var(--menu-height-with-tag));
   background: var(--color-background);
 }

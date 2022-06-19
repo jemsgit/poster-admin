@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
@@ -16,6 +17,10 @@ function App() {
   return (
     <Router>
       <div className="app" data-theme={theme}>
+        <div className="version-info">
+          <span>tag: {tag}</span>
+          <span>v: {version}</span>
+        </div>
         <Switch>
           <Route path="/" component={Root} exact />
           <Route path="/login" component={Login} />

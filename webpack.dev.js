@@ -5,8 +5,9 @@ const useMocks = process.env.UI_MOCK == 1;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: ['./src/ui/index.tsx'],
-  devtool:'eval-source-map',
+  devtool:'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js',
@@ -45,7 +46,9 @@ module.exports = {
         // Beware that this disables module caching and must be used with caution.
         true,
       ),
-      useMocks: useMocks
+      useMocks: useMocks,
+      version: '"test_env"',
+      tag: '"1.2.3"'
     })
   ],
   devServer: {
