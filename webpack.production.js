@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const config = require('./config');
 const useMocks = process.env.UI_MOCK == 1;
+const VERSION = process.env.VERSION;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
@@ -42,8 +43,8 @@ module.exports = {
     new webpack.DefinePlugin({
       config: JSON.stringify(config.client),
       useMocks: useMocks,
-      version: process.env.GITHUB_ENV
-      //tag: 'process.env.GITHUB_REF'
+      version: VERSION,
+      tag: VERSION
     })
   ]
 }

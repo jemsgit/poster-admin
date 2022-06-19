@@ -64,16 +64,18 @@ jobs:
           DB_LOGIN: ${{ secrets.DB_LOGIN }}
           DB_PASS: ${{ secrets.DB_PASS }}
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          VERSION: ${{ toJson(github.ref) }}
         with:
           host: 104.131.43.62
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.key }}
-          envs: DOCKER_HUB_ACCESS_TOKEN,DOCKER_HUB_USERNAME,DB_LOGIN,DB_PASS,AUTH_SECRET
+          envs: DOCKER_HUB_ACCESS_TOKEN,DOCKER_HUB_USERNAME,DB_LOGIN,DB_PASS,AUTH_SECRET,VERSION
           script: |
             cd /home/jem/projects/admin-poster
             export DB_LOGIN=$DB_LOGIN
             export DB_PASS=$DB_PASS
             export AUTH_SECRET=$AUTH_SECRET
+            export VERSION=$VERSION
             echo $DOCKER_HUB_ACCESS_TOKEN | docker login --password-stdin -u $DOCKER_HUB_USERNAME
             docker-compose pull
             docker-compose stop
