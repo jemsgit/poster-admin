@@ -6,7 +6,7 @@ const config = {
   auth: {
     secret,
     cookieOptions: {
-      ttl: '5 h',
+      ttl: '5 d',
     },
   },
   client: {
