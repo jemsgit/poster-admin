@@ -43,7 +43,7 @@ module.exports = {
     new webpack.DefinePlugin({
       config: JSON.stringify(config.client),
       useMocks: useMocks,
-      version: VERSION,
+      version: JSON.stringify(VERSION),
       tag: VERSION
     })
   ]
