@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
+  mode: 'production',
   entry: ['./src/ui/index.tsx'],
   output: {
     path: path.resolve(__dirname, 'dist'),
