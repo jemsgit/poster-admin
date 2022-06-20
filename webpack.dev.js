@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const config = require('./config');
 const useMocks = process.env.UI_MOCK == 1;
+const VERSION = process.env.VERSION;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -47,8 +48,8 @@ module.exports = {
         true,
       ),
       useMocks: useMocks,
-      version: '"test_env"',
-      tag: '"1.2.3"'
+      version: JSON.stringify(VERSION),
+      tag: VERSION
     })
   ],
   devServer: {

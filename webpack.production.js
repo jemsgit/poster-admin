@@ -5,6 +5,8 @@ const useMocks = process.env.UI_MOCK == 1;
 const VERSION = process.env.VERSION;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+console.log(VERSION)
+
 
 module.exports = {
   mode: 'production',
@@ -44,8 +46,7 @@ module.exports = {
       config: JSON.stringify(config.client),
       useMocks: useMocks,
       version: JSON.stringify(VERSION),
-      tag: VERSION,
-      //123
+      tag: VERSION
     })
   ]
 }
