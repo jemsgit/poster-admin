@@ -4,6 +4,7 @@ const fs = require('fs');
 const Router = require('koa-router');
 const logger = require('koa-logger');
 const serve = require('koa-static');
+const staticCache = require('koa-static-cache');
 require('./db/models/index');
 
 const app = new Koa();
@@ -16,6 +17,9 @@ staticRouter.get('(.*)', (ctx) => {
 const loginRouter = require('./routes/login');
 const channelsRouter = require('./routes/channels');
 
+app.use(staticCache(path.join(__dirname, '../../dist'), {
+  maxAge: 10 * 24 * 60 * 60,
+}));
 app.use(serve(path.resolve(__dirname, '../../dist')));
 
 app
