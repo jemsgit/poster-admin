@@ -9,9 +9,13 @@
     "build": "cross-env NODE_ENV=production & webpack --config webpack.production.js",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "precommit": "lint-staged"
   },
   "keywords": [],
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "eslint"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -62,6 +66,7 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "html-webpack-plugin": "^5.3.2",
     "husky": "^6.0.0",
+    "lint-staged": "^12.5.0",
     "nodemon": "2.0.12",
     "postcss-loader": "^6.1.1",
     "postcss-nested": "^5.0.6",
