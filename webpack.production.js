@@ -45,8 +45,7 @@ module.exports = {
     new webpack.DefinePlugin({
       config: JSON.stringify(config.client),
       useMocks: useMocks,
-      version: JSON.stringify(VERSION),
-      tag: VERSION
+      tag: (VERSION || '').replace('refs/tags/', '')
     })
   ]
 }
