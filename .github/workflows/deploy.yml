@@ -2,6 +2,8 @@ name: Deploy
 
 on:
  push:
+  branches:
+    - 'master'
   tags:
     - "v*.*.*"
 
@@ -80,6 +82,7 @@ jobs:
             docker-compose pull
             docker-compose stop
             docker-compose rm -f
-            docker image rm $(docker images -q jemjem7/poster)
+            docker container rm -f jemjem7/poster || true
+#            docker image rm $(docker images -q jemjem7/poster)
             docker-compose up -d
 
