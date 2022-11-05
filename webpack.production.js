@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 console.log(VERSION)
 
-
 module.exports = {
   mode: 'production',
   entry: ['./src/ui/index.tsx'],

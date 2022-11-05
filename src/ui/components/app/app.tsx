@@ -18,8 +18,7 @@ function App() {
     <Router>
       <div className="app" data-theme={theme}>
         <div className="version-info">
-          <span>tag: {tag}</span>
-          <span>v: {version}</span>
+          <span>v: {tag}</span>
         </div>
         <Switch>
           <Route path="/" component={Root} exact />

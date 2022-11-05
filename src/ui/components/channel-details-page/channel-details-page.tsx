@@ -1,5 +1,5 @@
 import React, {
-  FC, useCallback, useEffect, useState, useRef,
+  FC, useCallback, useEffect, useState,
 } from 'react';
 // import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
@@ -11,9 +11,8 @@ import { getChannelDetails } from '../../../application/get-channels';
 import { saveChannelFileContent } from '../../../application/save-channel-data';
 import { ChannelFile } from '../../../domain/channel-details';
 
-import { renderText, escapeHtml } from '../../helpers/text-helper';
+import Editor from './editor/editor';
 
-import { processItemClick } from './editor';
 import './channel-details-page.css';
 
 interface IProps<P> extends RouteComponentProps {
@@ -36,54 +35,15 @@ const cn = createCn('channel-details-page');
 const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
   const channelDetailsStore: IChannelDetailsStore = useStore((state) => state.channelDetailsStore);
   const {
-    isSaving, isLoading, files, channelId,
+    isSaving, isLoading, files, channelId, clearChannelData,
   } = channelDetailsStore;
   const [editFile, setEditFile] = useState(undefined);
   const [content, setContent] = useState('');
-  const inputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     getChannelDetails(match.params.id);
+    return () => clearChannelData();
   }, []);
-
-  const handleOpenLink = useCallback((e: MouseEvent) => {
-    if (!(e.ctrlKey || e.metaKey) || e.target === e.currentTarget || e.button !== 0) {
-      return;
-    }
-    processItemClick(e);
-  }, []);
-
-  const handleContextClick = useCallback((e: MouseEvent) => {
-    if (e.ctrlKey) {
-      e.preventDefault();
-    }
-  }, []);
-
-  const handlePaste = (e: any) => {
-    e.preventDefault();
-    const text = (e.originalEvent || e).clipboardData.getData('text/plain');
-    document.execCommand('insertHTML', false, escapeHtml(text));
-  };
-
-  useEffect(() => {
-    if (!inputRef.current) {
-      return;
-    }
-    const currentRef = inputRef.current;
-    if (content !== currentRef.innerHTML) {
-      currentRef!.innerHTML = renderText(content);
-      currentRef.addEventListener('mousedown', handleOpenLink);
-      currentRef.addEventListener('contextmenu', handleContextClick);
-      currentRef.addEventListener('paste', handlePaste);
-    }
-
-    // eslint-disable-next-line consistent-return
-    return () => {
-      currentRef.removeEventListener('mousedown', handleOpenLink);
-      currentRef.removeEventListener('contextmenu', handleContextClick);
-      currentRef.removeEventListener('paste', handlePaste);
-    };
-  }, [content, handleOpenLink]);
 
   const handleFileSelect = useCallback((
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -94,10 +54,7 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
     setContent(file.content);
   }, [content]);
 
-  const handleSaveContent = useCallback(() => {
-    const text = inputRef.current!.innerText
-      .replace(/\n\n/g, '\n')
-      .replace(new RegExp(String.fromCharCode(160), 'g'), ' ');
+  const handleSaveContent = useCallback((text) => {
     saveChannelFileContent(channelId, editFile, text);
   }, [channelId, editFile]);
 
@@ -125,21 +82,11 @@ const ChannelDetailsPage: FC<IProps<MatchParams>> = ({ match }) => {
   );
 
   const renderEditor = () => (
-    <section className={cn('editor')}>
-      <div
-        ref={inputRef}
-        contentEditable="true"
-        className={cn('editor-content')}
-      />
-      <button
-        type="button"
-        className={cn('save-button')}
-        onClick={handleSaveContent}
-        disabled={isSaving}
-      >
-        Save
-      </button>
-    </section>
+    <Editor
+      content={content}
+      onSave={handleSaveContent}
+      isSaving={isSaving}
+    />
   );
 
   const renderContent = () => (

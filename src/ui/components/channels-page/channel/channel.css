@@ -8,6 +8,10 @@
   padding: 1em;
   cursor: pointer;
   color: var(--color-main-on-white-font);
+  background: rgb(255 255 255 / 20%);
+  max-width: 600px;
+  flex: 1 1 auto;
+  box-shadow: 2px 1px 7px 2px #e8e8e8;
 
   &:hover {
     box-shadow: 4px 4px 8px 0px var(--color-main-on-white-hover);

@@ -39,4 +39,9 @@ export const ChannelDetailsStore = types
         file.content = content;
       }
     },
+    clearChannelData() {
+      self.channelId = '';
+      self.files = cast([]);
+      self.times = cast([]);
+    },
   }));

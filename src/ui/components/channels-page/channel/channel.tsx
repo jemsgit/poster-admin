@@ -17,7 +17,7 @@ const Channel: FC<Props> = ({ data, onSelect }) => {
   } = data;
   const handleClick = useCallback(() => {
     onSelect(data.id);
-  }, [data.id, onSelect]);
+  }, [data, onSelect]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.code === '13') {

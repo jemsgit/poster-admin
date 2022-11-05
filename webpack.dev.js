@@ -5,6 +5,8 @@ const useMocks = process.env.UI_MOCK == 1;
 const VERSION = process.env.VERSION;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+console.log(VERSION)
+
 module.exports = {
   mode: 'development',
   entry: ['./src/ui/index.tsx'],
@@ -48,7 +50,6 @@ module.exports = {
         true,
       ),
       useMocks: useMocks,
-      version: JSON.stringify(VERSION),
       tag: VERSION
     })
   ],
